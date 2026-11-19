@@ -20,7 +20,7 @@ GitHub Actions 每日 4 次（台灣時間 09:13、14:13、20:13、23:13）：
    無 token 每小時約 300 次；建議在 repo **Settings → Secrets → Actions** 新增 `FINMIND_TOKEN`。
 
 ## 新增 / 刪除公司
-**最簡單：網站「追蹤名單」分頁的管理表單**（填代號 / 名稱 / 分類 / 產品比重，或在名單按「移除」→ 輸入管理密碼 → 送出）。
+**最簡單：網站「追蹤名單」分頁**：上方「快速新增」輸入代號（名稱自動帶出，來源 `public/data/names.json`，由 fetch.py 從 fineps 產生），或在名單按「移除」/「取消勾選的 → 排入刪除」→ 下方輸入管理密碼 → 送出。
 表單呼叫 Cloudflare Pages Function `functions/api/manage.js`，由它代為觸發下方 workflow；GitHub token 只存在 Cloudflare，不會出現在前端。
 一次性設定（Cloudflare Pages → Settings → Variables and Secrets，Production，類型 **Secret**）：
 - `GH_TOKEN`：GitHub fine-grained token，Repository access 只選 `mywu-cloud/TW-AI`，權限 **Actions: Read and write**

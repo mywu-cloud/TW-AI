@@ -189,6 +189,11 @@ def main():
     rev_src = [load_src(a.offline, "finrev", f) for f in ("revenue-twse.json", "revenue-tpex.json")]
     prices = load_src(a.offline, "fineps", "prices.json") or {}
     concepts = (load_src(a.offline, "fineps", "stock-concepts.json") or {}).get("map", {})
+    names = {}  # 全市場 代號 → [名稱, 產業]（供網站快速新增自動帶名稱）
+    for src in eps_src:
+        for code, st in ((src or {}).get("stocks") or {}).items():
+            if st.get("name"):
+                names[code] = [st["name"], st.get("industry") or ""]
     fm = FinMind(0 if a.no_finmind else MAX_FINMIND)
     now = dt.datetime.now(dt.timezone.utc)
 
@@ -198,6 +203,8 @@ def main():
         active.add(code)
         co = db["companies"].setdefault(code, {"code": code, "rev": {}, "eps": {}, "div": {}, "eps_est": []})
         co.update({k: c.get(k) for k in ("name", "group", "products", "note")})
+        if (not co.get("name") or co["name"] == code) and code in names:
+            co["name"] = names[code][0]  # 新增時未填名稱 → 自動補上
         co["active"] = True
         co["concepts"] = sorted(set(c.get("concepts", [])) | {("0050成分股" if x.startswith("元大台灣50") else x) for x in concepts.get(code, [])})
 
@@ -259,6 +266,8 @@ def main():
     os.makedirs(os.path.dirname(OUT), exist_ok=True)
     json.dump(db, open(OUT, "w", encoding="utf-8"), ensure_ascii=False, separators=(",", ":"))
     json.dump(cfg, open(os.path.join(ROOT, "public", "data", "companies.json"), "w", encoding="utf-8"), ensure_ascii=False, indent=1)
+    if names:
+        json.dump(dict(sorted(names.items())), open(os.path.join(ROOT, "public", "data", "names.json"), "w", encoding="utf-8"), ensure_ascii=False, separators=(",", ":"))
 
 
 if __name__ == "__main__":
