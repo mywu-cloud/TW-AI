@@ -11,6 +11,13 @@
 
 const enc = new TextEncoder();
 
+// 正規化：全形→半形、去前後空白/換行、去外層引號（避免 Secret 貼上時夾帶）
+const norm = s => {
+  s = String(s ?? "").normalize("NFKC").trim();
+  if (s.length >= 2 && /^(["'])[\s\S]*\1$/.test(s)) s = s.slice(1, -1).trim();
+  return s;
+};
+
 async function same(a, b) {
   // 固定時間比對（先 hash 再比，避免長度與時間差洩漏）
   const [x, y] = await Promise.all([a, b].map(s => crypto.subtle.digest("SHA-256", enc.encode(String(s)))));
@@ -48,7 +55,7 @@ const gh = (env, path, init = {}) =>
 
 async function auth(env, pw) {
   if (!env.GH_TOKEN || !env.ADMIN_PASSWORD) return json({ ok: false, error: "伺服器尚未設定 GH_TOKEN / ADMIN_PASSWORD" }, 500);
-  if (!pw || !(await same(pw, env.ADMIN_PASSWORD))) {
+  if (!norm(pw) || !(await same(norm(pw), norm(env.ADMIN_PASSWORD)))) {
     await new Promise(r => setTimeout(r, 800)); // 減緩暴力猜測
     return json({ ok: false, error: "密碼錯誤" }, 401);
   }

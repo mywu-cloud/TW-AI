@@ -337,11 +337,11 @@ function mInit(){
     try{const r=await fetch("/api/manage",{method:"POST",headers:{"content-type":"application/json"},body:JSON.stringify({password:pw,add,remove})});
       const d=await r.json().catch(()=>({error:"HTTP "+r.status}));
       if(d.ok){mMsg("✅ 已觸發更新，約 3–10 分鐘後重新整理頁面即可看到。可按「查看執行狀態」追蹤。",true);$("#mAdd").innerHTML="";mAddRow();$("#mDel").value="";mPrev()}
-      else mMsg("❌ "+(d.error||"失敗")+(d.detail?"："+d.detail:""),false)}
+      else mMsg("❌ "+(d.error||"失敗")+(d.detail?"："+d.detail:"")+(r.status===401?`（你輸入了 ${pw.trim().length} 個字元）`:""),false)}
     catch(e){mMsg("❌ 連線失敗："+e,false)}finally{$("#mGo").disabled=false}};
   $("#mRuns").onclick=async()=>{const pw=$("#mPw").value;if(!pw)return mMsg("請輸入管理密碼",false);mMsg("查詢中…");
     try{const r=await fetch("/api/manage",{headers:{"x-admin-password":pw}});const d=await r.json();
-      if(!d.ok)return mMsg("❌ "+d.error,false);
+      if(!d.ok)return mMsg("❌ "+d.error+(r.status===401?`（你輸入了 ${pw.trim().length} 個字元）`:""),false);
       const lab=x=>x.status!=="completed"?"⏳ 執行中":x.conclusion==="success"?"✅ 完成":"❌ "+x.conclusion;
       $("#mMsg").className="note";$("#mMsg").innerHTML=d.runs.length?d.runs.map(x=>`${new Date(x.created_at).toLocaleString("zh-TW",{hour12:false})}　${lab(x)}　<a href="${x.url}" target="_blank" rel="noopener">詳細</a>`).join("<br>"):"尚無手動執行紀錄"}
     catch(e){mMsg("❌ 連線失敗："+e,false)}};
