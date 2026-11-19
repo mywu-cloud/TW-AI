@@ -919,32 +919,6 @@
     }
    ],
    "note": ""
-  },
-  {
-   "code": "6613",
-   "name": "朋億*",
-   "group": "其他",
-   "products": [
-    {
-     "name": "半導體廠務工程",
-     "pct": null
-    }
-   ],
-   "note": "環球晶集團"
-  },
-  {
-   "code": "4420",
-   "name": "光明",
-   "group": "其他",
-   "products": [],
-   "note": ""
-  },
-  {
-   "code": "6486",
-   "name": "互動",
-   "group": "其他",
-   "products": [],
-   "note": ""
   }
  ]
 }
