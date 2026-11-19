@@ -919,6 +919,27 @@
     }
    ],
    "note": ""
+  },
+  {
+   "code": "4958",
+   "name": "臻鼎-KY",
+   "group": "ABF載板",
+   "products": [],
+   "note": ""
+  },
+  {
+   "code": "2059",
+   "name": "川湖",
+   "group": "機殼/滑軌",
+   "products": [],
+   "note": ""
+  },
+  {
+   "code": "3044",
+   "name": "健鼎",
+   "group": "PCB/CCL/材料",
+   "products": [],
+   "note": ""
   }
  ]
 }
