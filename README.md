@@ -1,4 +1,4 @@
-# 台灣AI科技財報（TW-AI）
+# 台灣AI科技公司財報（TW-AI）
 
 追蹤台灣電子五哥與主要 AI 供應鏈公司的**月營收**與**季 EPS**，長期趨勢圖、概念分類、主要產品營收比重，可匯出 CSV / Excel。
 網站部署於 Cloudflare Pages（輸出目錄 `public/`，無 build 指令）。
