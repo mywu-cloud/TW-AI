@@ -30,7 +30,7 @@ main{padding:16px 0 40px}
 .pill{padding:4px 11px;border-radius:999px;border:1px solid var(--line);background:var(--panel2);cursor:pointer;font-size:12.5px;color:var(--txt);white-space:nowrap}
 .pill.on{background:var(--acc);color:#fff;border-color:var(--acc);font-weight:600}
 .pill small{opacity:.7}
-select,input[type=text],input[type=number]{background:var(--panel2);color:var(--txt);border:1px solid var(--line);border-radius:8px;padding:6px 10px;font-size:13px}
+select,input[type=text],input[type=number],input[type=password],.mt input{background:var(--panel2);color:var(--txt);border:1px solid var(--line);border-radius:8px;padding:6px 10px;font-size:13px}
 .kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin-top:12px}
 .kpi{background:var(--panel2);border:1px solid var(--line);border-radius:10px;padding:9px 12px}
 .kpi .l{color:var(--mute);font-size:12px}.kpi .v{font-size:20px;font-weight:700;font-variant-numeric:tabular-nums}
@@ -56,6 +56,7 @@ h2{font-size:15px;margin:0 0 10px}
 .hm td{text-align:center;min-width:58px;font-size:12px}
 code{background:var(--panel2);border:1px solid var(--line);padding:1px 6px;border-radius:5px;font-size:12px}
 .hide{display:none!important}
+h3.mh{font-size:13px;margin:14px 0 6px;color:var(--mute)}.mt td{padding:4px 6px}.mt input{width:100%;min-width:80px}.mt td:first-child input{width:80px}.mok{color:var(--up)}.merr{color:var(--dn)}
 footer{border-top:1px solid var(--line);padding:16px 0 30px;color:var(--mute);font-size:12px}
 .info dt{color:var(--mute);font-size:12px;margin-top:8px}.info dd{margin:2px 0 0}
 .tag{font-size:11px;color:var(--mute);border:1px solid var(--line);border-radius:5px;padding:0 5px;margin:0 3px 3px 0;display:inline-block}
@@ -122,13 +123,26 @@ footer{border-top:1px solid var(--line);padding:16px 0 30px;color:var(--mute);fo
 
  <section id="t-list" class="hide">
   <div class="panel"><h2>追蹤名單 <span class="note">（取消勾選＝只在你的瀏覽器隱藏）</span></h2><div class="tw"><table id="listT"></table></div></div>
-  <div class="panel"><h2>新增 / 刪除公司（永久）</h2><div class="note">
+  <div class="panel" id="mgr"><h2>新增 / 刪除公司（永久）</h2>
+   <div class="row"><label>管理密碼 <input type="password" id="mPw" autocomplete="current-password" style="width:200px"></label>
+    <label class="note"><input type="checkbox" id="mKeep"> 此分頁記住（關閉分頁即清除）</label></div>
+   <h3 class="mh">新增 / 更新</h3>
+   <div class="tw" style="max-height:none"><table class="mt"><thead><tr><th class="l">代號*</th><th class="l">名稱</th><th class="l">概念分類</th><th class="l">主要產品:比重（; 分隔）</th><th class="l">備註</th><th></th></tr></thead><tbody id="mAdd"></tbody></table></div>
+   <datalist id="mGroups"></datalist>
+   <div class="row" style="margin-top:8px"><button class="btn" id="mMore">＋ 再加一列</button><span class="note">代號已存在 → 只更新有填的欄位。例：2345｜智邦｜光通訊/網通｜交換器:85;其他:15</span></div>
+   <h3 class="mh">刪除</h3>
+   <div class="row"><input type="text" id="mDel" placeholder="代號，以逗號分隔，例 2402,4420" style="min-width:280px"><span class="note">也可在上方名單按「移除」加入</span></div>
+   <div class="row" style="margin-top:12px"><button class="btn pri" id="mGo">送出</button><button class="btn" id="mRuns">查看執行狀態</button><span class="note" id="mPrev"></span></div>
+   <div id="mMsg" class="note" style="margin-top:8px"></div>
+   <details style="margin-top:10px"><summary class="note">其他方式（GitHub Actions / 直接編輯設定檔）</summary>
+   <div class="note">
    GitHub → <a id="actLink" target="_blank" rel="noopener">Actions → Update TW-AI</a> → <b>Run workflow</b>：<br>
    • <b>add</b>：<code>代號|名稱|概念分類|主要產品:比重;產品:比重|備註</code>，多筆以 <code>#</code> 分隔<br>
    &nbsp;&nbsp;例 <code>2345|智邦|光通訊/網通|交換器:85;其他:15</code>、<code>3661|世芯-KY|IC設計/ASIC</code>（名稱之後可省略）<br>
    • <b>remove</b>：<code>2402,4420</code><br>
    或直接編輯 <a id="cfgLink" target="_blank" rel="noopener"><code>config/companies.json</code></a>（可修改概念分類、主要產品比重、備註、價位預估倍數）。<br>
-   新增公司於下次執行自動抓取 2019 年起月營收、季 EPS 與股利；刪除的公司歷史保留，重新加入可延續。</div></div>
+   新增公司於下次執行自動抓取 2019 年起月營收、季 EPS 與股利；刪除的公司歷史保留，重新加入可延續。</div></details>
+  </div>
  </section>
 </main>
 
@@ -173,6 +187,7 @@ function init(){
   $("#mSel").value=LS.get("m","ryoy");$("#aggSel").value=LS.get("agg","co");
   $("#mSel").onchange=$("#aggSel").onchange=()=>{LS.set("m",$("#mSel").value);LS.set("agg",$("#aggSel").value);render()};
   $("#tabs").onclick=e=>{const t=e.target.dataset.t;if(!t)return;tab=t;$$("#tabs button").forEach(b=>b.classList.toggle("on",b.dataset.t===t));$$("main>section").forEach(s=>s.classList.toggle("hide",s.id!=="t-"+t));$("#filterBar").classList.toggle("hide",t==="co"||t==="list");render()};
+  mInit();
   render();
 }
 function render(){if(!DB)return;({rev:renderRev,eps:renderEps,co:renderCo,cmp:renderCmp,list:renderList})[tab]()}
@@ -287,9 +302,49 @@ function renderCmp(){
 }
 function renderList(){
   const A=Object.values(DB.companies).sort((a,b)=>(b.active!==false)-(a.active!==false)||DB.groups.indexOf(a.group)-DB.groups.indexOf(b.group));
-  $("#listT").innerHTML=`<thead><tr><th class="l">顯示</th><th class="l">代號</th><th class="l">公司</th><th class="l">概念分類</th><th class="l">產業類別</th><th class="l">主要產品（約略比重）</th><th class="l">概念標籤</th><th>月營收月數</th><th>EPS 季數</th><th class="l">狀態</th></tr></thead><tbody>${A.map(c=>`<tr><td class="l"><input type="checkbox" data-c="${c.code}" ${hidden.has(c.code)?"":"checked"} ${c.active===false?"disabled":""}></td><td class="l"><b>${c.code}</b></td><td class="l nm">${c.name}</td><td class="l">${c.group||""}</td><td class="l grp">${c.industry||""}</td><td class="l" style="white-space:normal;min-width:260px">${prod(c)}</td><td class="l" style="white-space:normal;min-width:180px">${(c.concepts||[]).map(x=>`<span class="tag">${x}</span>`).join("")}</td><td>${Object.keys(c.rev).length}</td><td>${Object.keys(c.eps).length}</td><td class="l">${c.active===false?'<span class="badge b-dn">已移除</span>':'<span class="badge b-up">追蹤中</span>'}</td></tr>`).join("")}</tbody>`;
+  $("#listT").innerHTML=`<thead><tr><th class="l">顯示</th><th class="l">代號</th><th class="l">公司</th><th class="l">概念分類</th><th class="l">產業類別</th><th class="l">主要產品（約略比重）</th><th class="l">概念標籤</th><th>月營收月數</th><th>EPS 季數</th><th class="l">狀態</th><th></th></tr></thead><tbody>${A.map(c=>`<tr><td class="l"><input type="checkbox" data-c="${c.code}" ${hidden.has(c.code)?"":"checked"} ${c.active===false?"disabled":""}></td><td class="l"><b>${c.code}</b></td><td class="l nm">${c.name}</td><td class="l">${c.group||""}</td><td class="l grp">${c.industry||""}</td><td class="l" style="white-space:normal;min-width:260px">${prod(c)}</td><td class="l" style="white-space:normal;min-width:180px">${(c.concepts||[]).map(x=>`<span class="tag">${x}</span>`).join("")}</td><td>${Object.keys(c.rev).length}</td><td>${Object.keys(c.eps).length}</td><td class="l">${c.active===false?'<span class="badge b-dn">已移除</span>':'<span class="badge b-up">追蹤中</span>'}</td><td>${c.active===false?`<button class="btn" data-re="${c.code}">重新加入</button>`:`<button class="btn" data-rm="${c.code}">移除</button>`}</td></tr>`).join("")}</tbody>`;
+  $("#listT").onclick=e=>{const rm=e.target.dataset.rm,re=e.target.dataset.re;if(rm)mQueueDel(rm);if(re)mAddRow({code:re});};
   $("#listT").onchange=e=>{const k=e.target.dataset.c;if(!k)return;e.target.checked?hidden.delete(k):hidden.add(k);LS.set("hidden",[...hidden])};
   csvName="追蹤名單.csv";csvRows=()=>[["代號","公司","概念分類","產業類別","主要產品","概念標籤","備註"],...A.map(c=>[c.code,c.name,c.group,c.industry,prod(c),(c.concepts||[]).join("/"),c.note])];
+}
+// ── 管理表單：經 /api/manage（Cloudflare Pages Function）觸發 GitHub Actions ──
+const SS={get:k=>{try{return sessionStorage.getItem("twai_"+k)}catch(e){return null}},set:(k,v)=>{try{v==null?sessionStorage.removeItem("twai_"+k):sessionStorage.setItem("twai_"+k,v)}catch(e){}}};
+function mAddRow(v={}){const tr=document.createElement("tr");
+  tr.innerHTML=`<td><input data-k="code" inputmode="numeric" placeholder="2345"></td><td><input data-k="name" placeholder="智邦"></td><td><input data-k="group" list="mGroups" placeholder="光通訊/網通"></td><td><input data-k="prods" placeholder="交換器:85;其他:15" style="min-width:200px"></td><td><input data-k="note"></td><td><button class="btn" data-x>✕</button></td>`;
+  for(const [k,x] of Object.entries(v))if(tr.querySelector(`[data-k=${k}]`))tr.querySelector(`[data-k=${k}]`).value=x;
+  $("#mAdd").appendChild(tr);mPrev();if(v.code)tr.scrollIntoView({block:"nearest"});}
+function mQueueDel(code){const s=new Set($("#mDel").value.split(/[,\s]+/).filter(Boolean));s.add(code);$("#mDel").value=[...s].join(",");mPrev();$("#mDel").scrollIntoView({block:"center"});}
+function mSpec(){const add=[...$$("#mAdd tr")].map(tr=>{const g=k=>tr.querySelector(`[data-k=${k}]`).value.replace(/[|#]/g," ").trim();
+    const p=[g("code"),g("name"),g("group"),g("prods").replace(/：/g,":").replace(/；/g,";"),g("note")];while(p.length>1&&!p[p.length-1])p.pop();return p[0]?p.join("|"):""}).filter(Boolean).join("#");
+  const remove=$("#mDel").value.split(/[,，\s]+/).filter(Boolean).join(",");return{add,remove}}
+function mPrev(){const {add,remove}=mSpec();$("#mPrev").textContent=(add?`add：${add}　`:"")+(remove?`remove：${remove}`:"");}
+function mMsg(t,ok){const m=$("#mMsg");m.className="note "+(ok===true?"mok":ok===false?"merr":"");m.textContent=t}
+function mInit(){
+  $("#mGroups").innerHTML=DB.groups.map(g=>`<option value="${g}">`).join("");
+  const saved=SS.get("pw");if(saved){$("#mPw").value=saved;$("#mKeep").checked=true}
+  $("#mKeep").onchange=()=>SS.set("pw",$("#mKeep").checked?$("#mPw").value:null);
+  $("#mPw").oninput=()=>{if($("#mKeep").checked)SS.set("pw",$("#mPw").value)};
+  mAddRow();
+  $("#mMore").onclick=()=>mAddRow();
+  $("#mAdd").oninput=mPrev;$("#mDel").oninput=mPrev;
+  $("#mAdd").onclick=e=>{if(e.target.dataset.x!==undefined){e.target.closest("tr").remove();if(!$("#mAdd").children.length)mAddRow();mPrev()}};
+  $("#mGo").onclick=async()=>{const {add,remove}=mSpec(),pw=$("#mPw").value;
+    if(!pw)return mMsg("請輸入管理密碼",false);if(!add&&!remove)return mMsg("請填寫要新增或刪除的公司",false);
+    const bad=add.split("#").map(s=>s.split("|")[0]).find(c=>!/^\d{4,6}$/.test(c));if(bad)return mMsg(`代號格式錯誤：${bad}`,false);
+    const dup=remove.split(",").filter(c=>c&&!DB.companies[c]);
+    if(!confirm(`確定送出？\n${add?"新增/更新："+add+"\n":""}${remove?"刪除："+remove:""}${dup.length?"\n（目前名單找不到："+dup.join(",")+"）":""}`))return;
+    $("#mGo").disabled=true;mMsg("送出中…");
+    try{const r=await fetch("/api/manage",{method:"POST",headers:{"content-type":"application/json"},body:JSON.stringify({password:pw,add,remove})});
+      const d=await r.json().catch(()=>({error:"HTTP "+r.status}));
+      if(d.ok){mMsg("✅ 已觸發更新，約 3–10 分鐘後重新整理頁面即可看到。可按「查看執行狀態」追蹤。",true);$("#mAdd").innerHTML="";mAddRow();$("#mDel").value="";mPrev()}
+      else mMsg("❌ "+(d.error||"失敗")+(d.detail?"："+d.detail:""),false)}
+    catch(e){mMsg("❌ 連線失敗："+e,false)}finally{$("#mGo").disabled=false}};
+  $("#mRuns").onclick=async()=>{const pw=$("#mPw").value;if(!pw)return mMsg("請輸入管理密碼",false);mMsg("查詢中…");
+    try{const r=await fetch("/api/manage",{headers:{"x-admin-password":pw}});const d=await r.json();
+      if(!d.ok)return mMsg("❌ "+d.error,false);
+      const lab=x=>x.status!=="completed"?"⏳ 執行中":x.conclusion==="success"?"✅ 完成":"❌ "+x.conclusion;
+      $("#mMsg").className="note";$("#mMsg").innerHTML=d.runs.length?d.runs.map(x=>`${new Date(x.created_at).toLocaleString("zh-TW",{hour12:false})}　${lab(x)}　<a href="${x.url}" target="_blank" rel="noopener">詳細</a>`).join("<br>"):"尚無手動執行紀錄"}
+    catch(e){mMsg("❌ 連線失敗："+e,false)}};
 }
 $("#csvBtn").onclick=()=>{const rows=csvRows();if(!rows.length)return;const esc=v=>{v=v==null?"":String(v);return/[",\n]/.test(v)?'"'+v.replace(/"/g,'""')+'"':v};
   const a=document.createElement("a");a.href=URL.createObjectURL(new Blob(["﻿"+rows.map(r=>r.map(esc).join(",")).join("\n")],{type:"text/csv;charset=utf-8"}));a.download=csvName;a.click();setTimeout(()=>URL.revokeObjectURL(a.href),1000)};
