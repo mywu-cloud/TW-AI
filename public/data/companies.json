@@ -1,0 +1,950 @@
+{
+ "_說明": "追蹤名單。group=概念分類（自訂）；products=主要產品，pct 為約略營收比重(%)，空白表示未填；note=備註。可直接編輯，或用 GitHub Actions「Update TW-AI」的 add/remove。產業類別(上市櫃類股)與概念標籤會自動補上。",
+ "groups": [
+  "電子五哥",
+  "AI伺服器/系統",
+  "晶圓代工/封測",
+  "IC設計/ASIC",
+  "記憶體",
+  "散熱",
+  "PCB/CCL/材料",
+  "ABF載板",
+  "機殼/滑軌",
+  "電源/BBU",
+  "工業電腦",
+  "光通訊/網通",
+  "光學/影像",
+  "軟體/IT服務",
+  "機器人/自動化",
+  "其他"
+ ],
+ "pe_multiple": 20,
+ "companies": [
+  {
+   "code": "2317",
+   "name": "鴻海",
+   "group": "電子五哥",
+   "products": [
+    {
+     "name": "雲端網路產品",
+     "pct": 40.0
+    },
+    {
+     "name": "消費智能產品",
+     "pct": 38.0
+    },
+    {
+     "name": "電腦終端產品",
+     "pct": 17.0
+    },
+    {
+     "name": "元件及其他",
+     "pct": 5.0
+    }
+   ],
+   "note": ""
+  },
+  {
+   "code": "2382",
+   "name": "廣達",
+   "group": "電子五哥",
+   "products": [
+    {
+     "name": "伺服器(含AI)",
+     "pct": 70.0
+    },
+    {
+     "name": "筆電",
+     "pct": 25.0
+    },
+    {
+     "name": "其他",
+     "pct": 5.0
+    }
+   ],
+   "note": ""
+  },
+  {
+   "code": "3231",
+   "name": "緯創",
+   "group": "電子五哥",
+   "products": [
+    {
+     "name": "伺服器/資料中心",
+     "pct": 65.0
+    },
+    {
+     "name": "筆電/PC",
+     "pct": 25.0
+    },
+    {
+     "name": "其他",
+     "pct": 10.0
+    }
+   ],
+   "note": ""
+  },
+  {
+   "code": "2356",
+   "name": "英業達",
+   "group": "電子五哥",
+   "products": [
+    {
+     "name": "伺服器",
+     "pct": 65.0
+    },
+    {
+     "name": "筆電",
+     "pct": 30.0
+    },
+    {
+     "name": "其他",
+     "pct": 5.0
+    }
+   ],
+   "note": ""
+  },
+  {
+   "code": "2324",
+   "name": "仁寶",
+   "group": "電子五哥",
+   "products": [
+    {
+     "name": "筆電",
+     "pct": 80.0
+    },
+    {
+     "name": "伺服器/其他",
+     "pct": 20.0
+    }
+   ],
+   "note": ""
+  },
+  {
+   "code": "4938",
+   "name": "和碩",
+   "group": "電子五哥",
+   "products": [
+    {
+     "name": "通訊產品",
+     "pct": 45.0
+    },
+    {
+     "name": "消費電子",
+     "pct": 30.0
+    },
+    {
+     "name": "電腦產品",
+     "pct": 25.0
+    }
+   ],
+   "note": ""
+  },
+  {
+   "code": "6669",
+   "name": "緯穎",
+   "group": "AI伺服器/系統",
+   "products": [
+    {
+     "name": "雲端/AI伺服器",
+     "pct": 90.0
+    },
+    {
+     "name": "儲存及其他",
+     "pct": 10.0
+    }
+   ],
+   "note": ""
+  },
+  {
+   "code": "2376",
+   "name": "技嘉",
+   "group": "AI伺服器/系統",
+   "products": [
+    {
+     "name": "主機板/顯示卡",
+     "pct": 50.0
+    },
+    {
+     "name": "伺服器",
+     "pct": 40.0
+    },
+    {
+     "name": "筆電及其他",
+     "pct": 10.0
+    }
+   ],
+   "note": ""
+  },
+  {
+   "code": "2357",
+   "name": "華碩",
+   "group": "AI伺服器/系統",
+   "products": [
+    {
+     "name": "筆電/桌機",
+     "pct": null
+    },
+    {
+     "name": "主機板/顯示卡",
+     "pct": null
+    },
+    {
+     "name": "伺服器",
+     "pct": null
+    }
+   ],
+   "note": ""
+  },
+  {
+   "code": "3706",
+   "name": "神達",
+   "group": "AI伺服器/系統",
+   "products": [
+    {
+     "name": "伺服器",
+     "pct": null
+    },
+    {
+     "name": "車用電子/影像",
+     "pct": null
+    }
+   ],
+   "note": ""
+  },
+  {
+   "code": "2330",
+   "name": "台積電",
+   "group": "晶圓代工/封測",
+   "products": [
+    {
+     "name": "HPC",
+     "pct": 58.0
+    },
+    {
+     "name": "智慧型手機",
+     "pct": 30.0
+    },
+    {
+     "name": "IoT",
+     "pct": 5.0
+    },
+    {
+     "name": "車用",
+     "pct": 5.0
+    },
+    {
+     "name": "其他",
+     "pct": 2.0
+    }
+   ],
+   "note": ""
+  },
+  {
+   "code": "2303",
+   "name": "聯電",
+   "group": "晶圓代工/封測",
+   "products": [
+    {
+     "name": "晶圓代工",
+     "pct": 100.0
+    }
+   ],
+   "note": ""
+  },
+  {
+   "code": "3711",
+   "name": "日月光投控",
+   "group": "晶圓代工/封測",
+   "products": [
+    {
+     "name": "封裝測試",
+     "pct": 50.0
+    },
+    {
+     "name": "電子代工(環旭)",
+     "pct": 45.0
+    },
+    {
+     "name": "其他",
+     "pct": 5.0
+    }
+   ],
+   "note": ""
+  },
+  {
+   "code": "8150",
+   "name": "南茂",
+   "group": "晶圓代工/封測",
+   "products": [
+    {
+     "name": "驅動IC封測",
+     "pct": null
+    },
+    {
+     "name": "記憶體封測",
+     "pct": null
+    }
+   ],
+   "note": ""
+  },
+  {
+   "code": "3264",
+   "name": "欣銓",
+   "group": "晶圓代工/封測",
+   "products": [
+    {
+     "name": "IC測試",
+     "pct": 100.0
+    }
+   ],
+   "note": "記憶體IC封測"
+  },
+  {
+   "code": "3289",
+   "name": "宜特",
+   "group": "晶圓代工/封測",
+   "products": [
+    {
+     "name": "故障分析/驗證測試",
+     "pct": null
+    }
+   ],
+   "note": ""
+  },
+  {
+   "code": "8028",
+   "name": "昇陽半導體",
+   "group": "晶圓代工/封測",
+   "products": [
+    {
+     "name": "再生晶圓",
+     "pct": null
+    },
+    {
+     "name": "晶圓薄化",
+     "pct": null
+    }
+   ],
+   "note": ""
+  },
+  {
+   "code": "2454",
+   "name": "聯發科",
+   "group": "IC設計/ASIC",
+   "products": [
+    {
+     "name": "手機晶片",
+     "pct": 55.0
+    },
+    {
+     "name": "智慧終端平台",
+     "pct": 40.0
+    },
+    {
+     "name": "電源IC",
+     "pct": 5.0
+    }
+   ],
+   "note": ""
+  },
+  {
+   "code": "3443",
+   "name": "創意",
+   "group": "IC設計/ASIC",
+   "products": [
+    {
+     "name": "ASIC量產(Turnkey)",
+     "pct": null
+    },
+    {
+     "name": "委託設計(NRE)",
+     "pct": null
+    }
+   ],
+   "note": ""
+  },
+  {
+   "code": "3006",
+   "name": "晶豪科",
+   "group": "記憶體",
+   "products": [
+    {
+     "name": "DRAM",
+     "pct": null
+    },
+    {
+     "name": "SRAM",
+     "pct": null
+    },
+    {
+     "name": "Flash",
+     "pct": null
+    }
+   ],
+   "note": "Dram/sRAM\\Flash"
+  },
+  {
+   "code": "2344",
+   "name": "華邦電",
+   "group": "記憶體",
+   "products": [
+    {
+     "name": "Flash",
+     "pct": 50.0
+    },
+    {
+     "name": "DRAM",
+     "pct": 45.0
+    },
+    {
+     "name": "其他",
+     "pct": 5.0
+    }
+   ],
+   "note": ""
+  },
+  {
+   "code": "2408",
+   "name": "南亞科",
+   "group": "記憶體",
+   "products": [
+    {
+     "name": "DRAM",
+     "pct": 100.0
+    }
+   ],
+   "note": ""
+  },
+  {
+   "code": "8112",
+   "name": "至上",
+   "group": "記憶體",
+   "products": [
+    {
+     "name": "記憶體/IC通路",
+     "pct": null
+    }
+   ],
+   "note": ""
+  },
+  {
+   "code": "3017",
+   "name": "奇鋐",
+   "group": "散熱",
+   "products": [
+    {
+     "name": "伺服器散熱(氣冷/液冷)",
+     "pct": null
+    },
+    {
+     "name": "PC/NB散熱",
+     "pct": null
+    },
+    {
+     "name": "機構件",
+     "pct": null
+    }
+   ],
+   "note": ""
+  },
+  {
+   "code": "3324",
+   "name": "雙鴻",
+   "group": "散熱",
+   "products": [
+    {
+     "name": "伺服器散熱(液冷)",
+     "pct": null
+    },
+    {
+     "name": "PC/NB散熱",
+     "pct": null
+    }
+   ],
+   "note": ""
+  },
+  {
+   "code": "8996",
+   "name": "高力",
+   "group": "散熱",
+   "products": [
+    {
+     "name": "熱交換器/液冷",
+     "pct": null
+    },
+    {
+     "name": "燃料電池",
+     "pct": null
+    }
+   ],
+   "note": ""
+  },
+  {
+   "code": "2383",
+   "name": "台光電",
+   "group": "PCB/CCL/材料",
+   "products": [
+    {
+     "name": "銅箔基板(CCL)",
+     "pct": 95.0
+    },
+    {
+     "name": "其他",
+     "pct": 5.0
+    }
+   ],
+   "note": ""
+  },
+  {
+   "code": "6274",
+   "name": "台燿",
+   "group": "PCB/CCL/材料",
+   "products": [
+    {
+     "name": "銅箔基板(CCL)",
+     "pct": 100.0
+    }
+   ],
+   "note": ""
+  },
+  {
+   "code": "2368",
+   "name": "金像電",
+   "group": "PCB/CCL/材料",
+   "products": [
+    {
+     "name": "伺服器/網通PCB",
+     "pct": 100.0
+    }
+   ],
+   "note": ""
+  },
+  {
+   "code": "6191",
+   "name": "精成科",
+   "group": "PCB/CCL/材料",
+   "products": [
+    {
+     "name": "PCB",
+     "pct": null
+    },
+    {
+     "name": "電子代工",
+     "pct": null
+    }
+   ],
+   "note": ""
+  },
+  {
+   "code": "2402",
+   "name": "毅嘉",
+   "group": "PCB/CCL/材料",
+   "products": [
+    {
+     "name": "PCB",
+     "pct": null
+    },
+    {
+     "name": "按鍵/車用",
+     "pct": null
+    }
+   ],
+   "note": "PCB"
+  },
+  {
+   "code": "1815",
+   "name": "富喬",
+   "group": "PCB/CCL/材料",
+   "products": [
+    {
+     "name": "玻纖紗",
+     "pct": null
+    },
+    {
+     "name": "玻纖布",
+     "pct": null
+    }
+   ],
+   "note": ""
+  },
+  {
+   "code": "3037",
+   "name": "欣興",
+   "group": "ABF載板",
+   "products": [
+    {
+     "name": "IC載板(ABF/BT)",
+     "pct": 60.0
+    },
+    {
+     "name": "PCB/HDI",
+     "pct": 40.0
+    }
+   ],
+   "note": "ABF"
+  },
+  {
+   "code": "3189",
+   "name": "景碩",
+   "group": "ABF載板",
+   "products": [
+    {
+     "name": "IC載板(ABF/BT)",
+     "pct": 85.0
+    },
+    {
+     "name": "其他",
+     "pct": 15.0
+    }
+   ],
+   "note": "ABF"
+  },
+  {
+   "code": "8046",
+   "name": "南電",
+   "group": "ABF載板",
+   "products": [
+    {
+     "name": "ABF載板",
+     "pct": null
+    },
+    {
+     "name": "BT載板",
+     "pct": null
+    },
+    {
+     "name": "PCB",
+     "pct": null
+    }
+   ],
+   "note": "ABF"
+  },
+  {
+   "code": "8210",
+   "name": "勤誠",
+   "group": "機殼/滑軌",
+   "products": [
+    {
+     "name": "伺服器機殼",
+     "pct": 90.0
+    },
+    {
+     "name": "其他",
+     "pct": 10.0
+    }
+   ],
+   "note": ""
+  },
+  {
+   "code": "3693",
+   "name": "營邦",
+   "group": "機殼/滑軌",
+   "products": [
+    {
+     "name": "伺服器/儲存機殼",
+     "pct": null
+    }
+   ],
+   "note": ""
+  },
+  {
+   "code": "6584",
+   "name": "南俊國際",
+   "group": "機殼/滑軌",
+   "products": [
+    {
+     "name": "伺服器滑軌",
+     "pct": null
+    }
+   ],
+   "note": ""
+  },
+  {
+   "code": "2308",
+   "name": "台達電",
+   "group": "電源/BBU",
+   "products": [
+    {
+     "name": "電源及零組件",
+     "pct": 45.0
+    },
+    {
+     "name": "基礎設施(資料中心/電網)",
+     "pct": 40.0
+    },
+    {
+     "name": "自動化",
+     "pct": 15.0
+    }
+   ],
+   "note": ""
+  },
+  {
+   "code": "2301",
+   "name": "光寶科",
+   "group": "電源/BBU",
+   "products": [
+    {
+     "name": "雲端/電源",
+     "pct": null
+    },
+    {
+     "name": "光電",
+     "pct": null
+    },
+    {
+     "name": "資訊消費",
+     "pct": null
+    }
+   ],
+   "note": ""
+  },
+  {
+   "code": "3211",
+   "name": "順達",
+   "group": "電源/BBU",
+   "products": [
+    {
+     "name": "電池模組/BBU",
+     "pct": null
+    }
+   ],
+   "note": ""
+  },
+  {
+   "code": "4931",
+   "name": "新盛力",
+   "group": "電源/BBU",
+   "products": [
+    {
+     "name": "電池模組/BBU",
+     "pct": null
+    }
+   ],
+   "note": ""
+  },
+  {
+   "code": "1504",
+   "name": "東元",
+   "group": "電源/BBU",
+   "products": [
+    {
+     "name": "馬達/機電",
+     "pct": null
+    },
+    {
+     "name": "空調",
+     "pct": null
+    },
+    {
+     "name": "資料中心電力",
+     "pct": null
+    }
+   ],
+   "note": ""
+  },
+  {
+   "code": "2395",
+   "name": "研華",
+   "group": "工業電腦",
+   "products": [
+    {
+     "name": "工業電腦/IoT",
+     "pct": 100.0
+    }
+   ],
+   "note": ""
+  },
+  {
+   "code": "3416",
+   "name": "融程電",
+   "group": "工業電腦",
+   "products": [
+    {
+     "name": "強固型平板/工業電腦",
+     "pct": null
+    }
+   ],
+   "note": ""
+  },
+  {
+   "code": "3022",
+   "name": "威強電",
+   "group": "工業電腦",
+   "products": [
+    {
+     "name": "工業電腦",
+     "pct": null
+    }
+   ],
+   "note": ""
+  },
+  {
+   "code": "3005",
+   "name": "神基",
+   "group": "工業電腦",
+   "products": [
+    {
+     "name": "強固型電腦",
+     "pct": null
+    },
+    {
+     "name": "機構件",
+     "pct": null
+    }
+   ],
+   "note": ""
+  },
+  {
+   "code": "3450",
+   "name": "聯鈞",
+   "group": "光通訊/網通",
+   "products": [
+    {
+     "name": "光通訊元件/模組",
+     "pct": null
+    }
+   ],
+   "note": ""
+  },
+  {
+   "code": "3491",
+   "name": "昇達科",
+   "group": "光通訊/網通",
+   "products": [
+    {
+     "name": "微波/衛星通訊元件",
+     "pct": null
+    }
+   ],
+   "note": ""
+  },
+  {
+   "code": "6285",
+   "name": "啟碁",
+   "group": "光通訊/網通",
+   "products": [
+    {
+     "name": "網通",
+     "pct": null
+    },
+    {
+     "name": "衛星通訊",
+     "pct": null
+    },
+    {
+     "name": "車用電子",
+     "pct": null
+    }
+   ],
+   "note": ""
+  },
+  {
+   "code": "3008",
+   "name": "大立光",
+   "group": "光學/影像",
+   "products": [
+    {
+     "name": "手機鏡頭",
+     "pct": 95.0
+    },
+    {
+     "name": "其他",
+     "pct": 5.0
+    }
+   ],
+   "note": ""
+  },
+  {
+   "code": "3019",
+   "name": "亞光",
+   "group": "光學/影像",
+   "products": [
+    {
+     "name": "光學鏡頭/模組",
+     "pct": null
+    }
+   ],
+   "note": ""
+  },
+  {
+   "code": "4974",
+   "name": "亞泰",
+   "group": "光學/影像",
+   "products": [
+    {
+     "name": "掃描器/影像模組",
+     "pct": null
+    }
+   ],
+   "note": "掃瞄器"
+  },
+  {
+   "code": "4953",
+   "name": "緯軟",
+   "group": "軟體/IT服務",
+   "products": [
+    {
+     "name": "IT服務/軟體外包",
+     "pct": null
+    }
+   ],
+   "note": ""
+  },
+  {
+   "code": "6214",
+   "name": "精誠",
+   "group": "軟體/IT服務",
+   "products": [
+    {
+     "name": "IT服務/系統整合",
+     "pct": null
+    }
+   ],
+   "note": ""
+  },
+  {
+   "code": "4583",
+   "name": "台灣精銳",
+   "group": "機器人/自動化",
+   "products": [
+    {
+     "name": "精密減速機",
+     "pct": null
+    },
+    {
+     "name": "線性滑軌",
+     "pct": null
+    }
+   ],
+   "note": ""
+  },
+  {
+   "code": "6613",
+   "name": "朋億*",
+   "group": "其他",
+   "products": [
+    {
+     "name": "半導體廠務工程",
+     "pct": null
+    }
+   ],
+   "note": "環球晶集團"
+  },
+  {
+   "code": "4420",
+   "name": "光明",
+   "group": "其他",
+   "products": [],
+   "note": ""
+  },
+  {
+   "code": "6486",
+   "name": "互動",
+   "group": "其他",
+   "products": [],
+   "note": ""
+  }
+ ]
+}

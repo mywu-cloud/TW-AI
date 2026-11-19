@@ -1,0 +1,59 @@
+name: Update TW-AI
+
+on:
+  schedule:
+    # 台灣時間每日 09:13、14:13、20:13、23:13（月營收 1–10 日陸續公布、財報季搶先報）
+    - cron: "13 1,6,12,15 * * *"
+  workflow_dispatch:
+    inputs:
+      add:
+        description: "新增：代號|名稱|概念分類|產品:比重;產品:比重|備註（多筆用 # 分隔）例 2345|智邦|光通訊/網通|交換器:85;其他:15"
+        required: false
+        default: ""
+      remove:
+        description: "刪除代號（多筆用 , 分隔）例 2402,4420"
+        required: false
+        default: ""
+      finmind_days:
+        description: "FinMind 重新抓取間隔天數（0 = 本次全部重抓）"
+        required: false
+        default: "7"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: update-tw-ai
+  cancel-in-progress: false
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install openpyxl
+      - name: Add / remove companies
+        if: ${{ github.event_name == 'workflow_dispatch' && (inputs.add != '' || inputs.remove != '') }}
+        env:
+          ADD: ${{ inputs.add }}
+          REMOVE: ${{ inputs.remove }}
+        run: python scripts/manage.py --add "$ADD" --remove "$REMOVE"
+      - name: Fetch (fineps / finrev cache + FinMind)
+        env:
+          FINMIND_TOKEN: ${{ secrets.FINMIND_TOKEN }}
+          FINMIND_DAYS: ${{ inputs.finmind_days || '7' }}
+        run: python scripts/fetch.py
+      - name: Export CSV / XLSX
+        run: python scripts/export.py
+      - name: Commit
+        run: |
+          git config user.name "tw-ai-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add -A config public/data
+          if git diff --cached --quiet; then echo "no changes"; exit 0; fi
+          git commit -m "data: update $(date -u +%Y-%m-%dT%H:%MZ)"
+          git push
